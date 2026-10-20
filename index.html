@@ -70,15 +70,13 @@
     }
 
     #g-logo {
-      /* Marca em texto (logo do empreendimento ainda não entregue). */
-      display: flex;
-      flex-direction: column;
-      line-height: 1;
+      /* Logo Novos Ares Luar (traço branco sobre o roxo). A animação de escrita
+         roda uma vez; com prefers-reduced-motion o SVG pula para o quadro final. */
+      height: clamp(80px, 8vw, 104px);
+      width: auto;
+      display: block;
       flex-shrink: 0;
-      color: var(--ink);
     }
-    #g-logo .gl-name { font-size: clamp(15px, 1.6vw, 20px); font-weight: 300; letter-spacing: 0.32em; text-transform: uppercase; }
-    #g-logo .gl-sub  { font-size: clamp(30px, 3.4vw, 44px); font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; margin-top: 6px; }
 
     #btn-close {
       width: 38px;
@@ -714,7 +712,7 @@
     /* ── MOBILE (≤ 600px) ── */
     @media (max-width: 600px) {
       #g-header { padding: 8px 14px; }
-      #g-logo .gl-sub { font-size: 26px; }
+      #g-logo { height: 56px; }
 
       #filter-main { padding: 10px 12px; gap: 6px; }
       #filter-sub-inner { padding: 6px 12px 10px; }
@@ -812,7 +810,7 @@
 
   <!-- Header -->
   <header id="g-header">
-    <div id="g-logo"><span class="gl-name">Novos Ares</span><span class="gl-sub">Luar</span></div>
+    <img id="g-logo" src="assets/brand/logo.svg" alt="Novos Ares Luar">
     <button id="btn-close" title="Fechar galeria" aria-label="Fechar">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="16" height="16">
         <path d="M18 6L6 18M6 6l12 12"/>
