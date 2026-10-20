@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
 """
-build_assets.py — Regera assets/ a partir do material entregue em `_originais/`.
+build_assets.py — Gera assets/web/ (WebP) a partir do material entregue em assets/Lazer, assets/apartamento e assets/Plantas.
 
-`_originais/` (fora do git) guarda o material como veio da incorporadora:
-imagens/ (renders 1080 px), plantas/ (PNG/TIF com transparência). O de-para render -> nome final fica em `assets-map.tsv`
+O material chegou já redimensionado (1080 px de altura). O de-para render -> nome final fica em `assets-map.tsv`
 (TAB entre as colunas).
 
-  assets/<destino>.webp              imagem do lightbox  (lado maior <= 2600 px, q80)
-  assets/miniaturas/<destino>.webp   miniatura da grade  (lado maior <=  900 px, q72)
+  assets/web/<destino>.webp              imagem do lightbox  (lado maior <= 2600 px, q80)
+  assets/web/miniaturas/<destino>.webp   miniatura da grade  (lado maior <=  900 px, q72)
 
 Plantas: os PNGs já vêm com transparência. O desenho é assentado sobre BRANCO
 (o card de planta é branco), recortado na própria caixa (ignorando pontos
@@ -28,10 +27,10 @@ from pathlib import Path
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parent
-SRC = ROOT / '_originais'
-OUT = ROOT / 'assets'
+SRC = ROOT / 'assets'          # material entregue (já redimensionado)
+OUT = ROOT / 'assets' / 'web'  # saída WebP publicada
 
-FULL_W, FULL_Q = 2600, 80
+FULL_W, FULL_Q = 2600, 85
 THUMB_W, THUMB_Q = 900, 72
 PLAN_FULL_W, PLAN_FULL_Q = 3000, 86
 PLAN_THUMB_W, PLAN_THUMB_Q = 1400, 78
@@ -115,5 +114,5 @@ if __name__ == '__main__':
     ap.add_argument('--force', action='store_true')
     a = ap.parse_args()
     if not SRC.is_dir():
-        sys.exit(f"ERRO: pasta '{SRC.name}' não encontrada (material original).")
+        sys.exit(f"ERRO: pasta '{SRC.name}' não encontrada.")
     build_images(a.force)

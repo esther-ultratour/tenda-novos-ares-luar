@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Galeria — Itá Nobre</title>
+  <title>Galeria — Novos Ares Luar</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <!-- Montserrat: a mesma família do texto corrido do book -->
@@ -12,27 +12,27 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      /* ITÁ NOBRE · Tenda
-         --bg = taupe (C3AEA1), fundo sólido da página · --ink = marrom escuro
-         (texto sobre o taupe) · --accent = marrom médio (estado ativo).
-         O lightbox e os rótulos sobre foto continuam escuros, com texto creme. */
-      --bg: #C3AEA1;            /* taupe — fundo da página */
-      --bg-2: #2A1710;          /* marrom profundo — palco do lightbox */
-      --surface: #B39E91;       /* superfície de card (skeleton) */
-      --surface-2: #A89084;     /* superfície elevada / hover */
-      --ink: #2E2019;           /* texto principal sobre o taupe */
-      --dark: #FFEAD9;          /* texto sobre fundo escuro (lightbox, rótulos sobre foto) */
-      --text-soft: rgba(46,32,25,0.74);
-      --border: rgba(46,32,25,0.22);
-      --border-strong: rgba(46,32,25,0.55);
-      --accent: #5A3A2B;        /* marrom — cor secundária / estado ativo */
-      --accent-grad: linear-gradient(135deg, #6B4636 0%, #4A2E22 100%);
-      --accent-ink: #FFFFFF;    /* texto sobre o marrom */
-      --accent-soft: rgba(90,58,43,0.14);
-      --dark-bg: #2A1710;       /* backdrop do lightbox */
+      /* NOVOS ARES LUAR · Tenda
+         --bg = roxo profundo (311557), fundo sólido da página · --accent = roxo
+         (662483), estado ativo · --ink = branco (texto). O lightbox e os
+         rótulos sobre foto continuam escuros, com texto branco. */
+      --bg: #311557;            /* roxo — fundo da página */
+      --bg-2: #1E0B38;          /* roxo mais fundo — palco do lightbox */
+      --surface: #3D1D68;       /* superfície de card (skeleton) */
+      --surface-2: #4A2579;     /* superfície elevada / hover */
+      --ink: #FFFFFF;           /* texto principal sobre o roxo */
+      --dark: #FFFFFF;          /* texto sobre fundo escuro (lightbox, rótulos sobre foto) */
+      --text-soft: rgba(255,255,255,0.78);
+      --border: rgba(255,255,255,0.20);
+      --border-strong: rgba(255,255,255,0.50);
+      --accent: #662483;        /* roxo — cor secundária / estado ativo */
+      --accent-grad: linear-gradient(135deg, #762C95 0%, #581E73 100%);
+      --accent-ink: #FFFFFF;    /* texto sobre o roxo */
+      --accent-soft: rgba(255,255,255,0.12);
+      --dark-bg: #1E0B38;       /* backdrop do lightbox */
       --white: #FFFFFF;
       --plan-paper: #FFFFFF;    /* papel das plantas (desenho precisa de fundo claro) */
-      --plan-ink: #3A2A22;
+      --plan-ink: #311557;
       --font-serif: 'Montserrat', system-ui, sans-serif;
       --font-sans: 'Montserrat', system-ui, sans-serif;
       --ease: cubic-bezier(0.4, 0, 0.2, 1);
@@ -70,15 +70,15 @@
     }
 
     #g-logo {
-      /* Logo Itá Nobre (traço escuro sobre o taupe). Abaixo de ~80px o nome
-         fica pequeno demais.
-         A animação de escrita roda uma vez; com prefers-reduced-motion o
-         próprio SVG pula direto para o quadro final. */
-      height: clamp(80px, 8vw, 104px);
-      width: auto;
-      display: block;
+      /* Marca em texto (logo do empreendimento ainda não entregue). */
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
       flex-shrink: 0;
+      color: var(--ink);
     }
+    #g-logo .gl-name { font-size: clamp(15px, 1.6vw, 20px); font-weight: 300; letter-spacing: 0.32em; text-transform: uppercase; }
+    #g-logo .gl-sub  { font-size: clamp(30px, 3.4vw, 44px); font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; margin-top: 6px; }
 
     #btn-close {
       width: 38px;
@@ -128,7 +128,7 @@
       transition: background 0.22s var(--ease), color 0.22s var(--ease), border-color 0.22s var(--ease), transform 0.15s var(--ease);
     }
     .f-btn:hover { border-color: var(--accent); background: var(--accent-soft); }
-    .f-btn.active { background: var(--accent-grad); color: var(--accent-ink); border-color: var(--accent); box-shadow: 0 4px 14px rgba(46,32,25,0.28); }
+    .f-btn.active { background: var(--accent-grad); color: var(--accent-ink); border-color: var(--accent); box-shadow: 0 4px 14px rgba(0,0,0,0.30); }
     .f-btn:active { transform: scale(0.97); }
 
     /* Sub-filter */
@@ -167,7 +167,7 @@
       transition: border-color 0.22s var(--ease), background 0.22s var(--ease), color 0.22s var(--ease);
     }
     .sf-btn:hover { border-color: var(--accent); background: var(--accent-soft); }
-    .sf-btn.active { background: var(--accent-grad); color: var(--accent-ink); border-color: var(--accent); box-shadow: 0 4px 14px rgba(46,32,25,0.28); }
+    .sf-btn.active { background: var(--accent-grad); color: var(--accent-ink); border-color: var(--accent); box-shadow: 0 4px 14px rgba(0,0,0,0.30); }
 
     /* ── GALLERY SCROLL ── */
     #g-scroll {
@@ -251,7 +251,7 @@
       position: absolute;
       bottom: 0; left: 0; right: 0;
       padding: 32px 14px 13px;
-      background: linear-gradient(to top, rgba(42,23,16,0.90) 0%, rgba(42,23,16,0.50) 58%, transparent 100%);
+      background: linear-gradient(to top, rgba(30,11,56,0.90) 0%, rgba(30,11,56,0.50) 58%, transparent 100%);
       color: var(--dark);
       opacity: 0;
       transition: opacity 0.35s ease;
@@ -362,7 +362,7 @@
     .cob-badge {
       display: inline-block;
       padding: 3px 11px;
-      background: var(--ink);   /* o card de planta é branco: o selo vai no marrom escuro */
+      background: var(--bg);    /* o card de planta é branco: o selo vai no roxo */
       color: var(--white);
       font-size: 8.5px;
       font-weight: 600;
@@ -396,7 +396,7 @@
     .cob-note {
       font-size: 11px;
       letter-spacing: 0.02em;
-      color: rgba(58,42,34,0.72);
+      color: rgba(49,21,87,0.72);
       margin-top: 6px;
       min-height: 15px;
     }
@@ -427,6 +427,7 @@
       transition: background 0.22s var(--ease), color 0.22s var(--ease), opacity 0.22s;
     }
     .floor-tab:hover { opacity: 1; background: var(--accent-soft); }
+    .cob-card .floor-tabs { border-color: var(--bg); }
     .floor-tab.active { background: var(--accent); color: var(--accent-ink); opacity: 1; }
 
     /* Floor image area */
@@ -482,7 +483,7 @@
       position: absolute;
       bottom: 14px; left: 14px;
       padding: 4px 12px;
-      background: rgba(84,46,30,0.86);
+      background: rgba(102,36,131,0.92);
       color: var(--dark);
       font-size: 9.5px;
       font-weight: 500;
@@ -505,7 +506,7 @@
     .cob-hint {
       font-size: 10px;
       letter-spacing: 0.05em;
-      color: rgba(58,42,34,0.62);
+      color: rgba(49,21,87,0.62);
       text-transform: uppercase;
     }
 
@@ -539,7 +540,7 @@
       z-index: 9000;
       display: flex;
       flex-direction: column;
-      background: rgba(42,23,16,0.985);
+      background: rgba(30,11,56,0.985);
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.3s ease;
@@ -713,7 +714,7 @@
     /* ── MOBILE (≤ 600px) ── */
     @media (max-width: 600px) {
       #g-header { padding: 8px 14px; }
-      #g-logo { height: 56px; }
+      #g-logo .gl-sub { font-size: 26px; }
 
       #filter-main { padding: 10px 12px; gap: 6px; }
       #filter-sub-inner { padding: 6px 12px 10px; }
@@ -740,7 +741,7 @@
       /* arrows float over image on mobile */
       #lb-prev, #lb-next {
         width: 38px; height: 38px;
-        background: rgba(42,23,16,0.62);
+        background: rgba(30,11,56,0.62);
         border-color: transparent;
       }
       #lb-prev { left: 8px; }
@@ -811,7 +812,7 @@
 
   <!-- Header -->
   <header id="g-header">
-    <img id="g-logo" src="assets/brand/logo.svg" alt="Itá Nobre">
+    <div id="g-logo"><span class="gl-name">Novos Ares</span><span class="gl-sub">Luar</span></div>
     <button id="btn-close" title="Fechar galeria" aria-label="Fechar">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="16" height="16">
         <path d="M18 6L6 18M6 6l12 12"/>
@@ -884,77 +885,72 @@
 // os campos src com os nomes exatos dos arquivos.
 // ================================================================
 const GALLERY_CONFIG = {
-  projectName: 'ITÁ NOBRE',
+  projectName: 'NOVOS ARES LUAR',
   projectSub:  'Tenda',
 
+  // Três galerias independentes, abertas por ?mode=imagens | apartamento | plantas.
+  // Em cada uma o filtro principal são as sub-categorias; sem ?mode mostra tudo.
   categories: [
     {
-      // Uma sub-categoria por ambiente.
-      id: 'areas-comuns', label: 'Áreas Comuns',
+      id: 'imagens', label: 'Imagens',
       subs: [
-        { id: 'ac-todas',          label: 'Todas' },
-        { id: 'ac-salao-de-festas', label: 'Salão de Festas' },
-        { id: 'ac-churrasqueira',   label: 'Churrasqueira' },
-        { id: 'ac-piscina',         label: 'Piscina' },
-        { id: 'ac-campo',           label: 'Campo' },
-        { id: 'ac-infantil',        label: 'Espaço Infantil' },
-        { id: 'ac-pet-place',       label: 'Pet Place' },
-        { id: 'ac-saude-fitness',   label: 'Saúde e Fitness' },
+        { id: 'im-todas',   label: 'Todas' },
+        { id: 'im-fachada', label: 'Fachada e Acessos' },
+        { id: 'im-lazer',   label: 'Lazer' },
+        { id: 'im-festas',  label: 'Festas e Churrasqueira' },
       ]
     },
     {
       id: 'apartamento', label: 'Apartamento Decorado',
       subs: [
-        { id: 'ap-sala-cozinha', label: 'Sala e Cozinha' },
-        { id: 'ap-quartos',      label: 'Quartos e Banheiro' },
+        { id: 'ap-todas',          label: 'Todas' },
+        { id: 'ap-sala-cozinha',   label: 'Sala e Cozinha' },
+        { id: 'ap-varanda-garden', label: 'Varanda e Garden' },
+        { id: 'ap-quartos',        label: 'Quartos e Banheiro' },
       ]
     },
     {
       id: 'plantas', label: 'Plantas',
       subs: [
         { id: 'pl-tipologias',  label: 'Tipologias' },
-        { id: 'pl-bolotario', label: 'Bolotário' },
+        { id: 'pl-implantacao', label: 'Implantação' },
       ]
     },
   ],
 
   items: [
 
-    // ═══ ÁREAS COMUNS › SALÃO DE FESTAS ═══
-    { id:20, type:'image', category:'areas-comuns', subCategory:'ac-salao-de-festas', title:'Salão de Festas', subtitle:'Estar e Mesas', src:'assets/areas-comuns/salao-de-festas-01.webp', thumb:'assets/miniaturas/areas-comuns/salao-de-festas-01.webp' },
+    // ═══ IMAGENS › FACHADA E ACESSOS ═══
+    { id:10, type:'image', category:'imagens', subCategory:'im-fachada', title:'Fachada', subtitle:'Vista do Bloco', src:'assets/web/imagens/fachada-01.webp', thumb:'assets/web/miniaturas/imagens/fachada-01.webp' },
+    { id:11, type:'image', category:'imagens', subCategory:'im-fachada', title:'Portaria', subtitle:'Acesso e Guarita', src:'assets/web/imagens/portaria-01.webp', thumb:'assets/web/miniaturas/imagens/portaria-01.webp' },
+    { id:12, type:'image', category:'imagens', subCategory:'im-fachada', title:'Praça de Chegada', subtitle:'Pérgola e Bancos', src:'assets/web/imagens/praca-de-chegada-01.webp', thumb:'assets/web/miniaturas/imagens/praca-de-chegada-01.webp' },
 
-    // ═══ ÁREAS COMUNS › CHURRASQUEIRA ═══
-    { id:30, type:'image', category:'areas-comuns', subCategory:'ac-churrasqueira', title:'Churrasqueira Gourmet', subtitle:'Cozinha e Mesas', src:'assets/areas-comuns/churrasqueira-01.webp', thumb:'assets/miniaturas/areas-comuns/churrasqueira-01.webp' },
-    { id:31, type:'image', category:'areas-comuns', subCategory:'ac-churrasqueira', title:'Churrasqueira', subtitle:'Mesas e Jardim', src:'assets/areas-comuns/churrasqueira-02.webp', thumb:'assets/miniaturas/areas-comuns/churrasqueira-02.webp' },
+    // ═══ IMAGENS › LAZER ═══
+    { id:20, type:'image', category:'imagens', subCategory:'im-lazer', title:'Piscinas', subtitle:'Adulto e Infantil', src:'assets/web/imagens/piscinas-01.webp', thumb:'assets/web/miniaturas/imagens/piscinas-01.webp' },
+    { id:21, type:'image', category:'imagens', subCategory:'im-lazer', title:'Play Baby e Play Kids', subtitle:'Playground', src:'assets/web/imagens/play-kids-01.webp', thumb:'assets/web/miniaturas/imagens/play-kids-01.webp' },
+    { id:22, type:'image', category:'imagens', subCategory:'im-lazer', title:'Play Pet', subtitle:'Gramado e Obstáculos', src:'assets/web/imagens/play-pet-01.webp', thumb:'assets/web/miniaturas/imagens/play-pet-01.webp' },
+    { id:23, type:'image', category:'imagens', subCategory:'im-lazer', title:'Quadra Gramada', subtitle:'Campo de Futebol', src:'assets/web/imagens/quadra-01.webp', thumb:'assets/web/miniaturas/imagens/quadra-01.webp' },
+    { id:24, type:'image', category:'imagens', subCategory:'im-lazer', title:'Múltipla Estação', subtitle:'Ginástica ao Ar Livre', src:'assets/web/imagens/multipla-estacao-01.webp', thumb:'assets/web/miniaturas/imagens/multipla-estacao-01.webp' },
+    { id:25, type:'image', category:'imagens', subCategory:'im-lazer', title:'Bicicletário', subtitle:'Bicicletas Suspensas', src:'assets/web/imagens/bicicletario-01.webp', thumb:'assets/web/miniaturas/imagens/bicicletario-01.webp' },
 
-    // ═══ ÁREAS COMUNS › PISCINA ═══
-    { id:40, type:'image', category:'areas-comuns', subCategory:'ac-piscina', title:'Piscina', subtitle:'Piscina e Solário', src:'assets/areas-comuns/piscina-01.webp', thumb:'assets/miniaturas/areas-comuns/piscina-01.webp' },
+    // ═══ IMAGENS › FESTAS E CHURRASQUEIRA ═══
+    { id:30, type:'image', category:'imagens', subCategory:'im-festas', title:'Salão de Festas', subtitle:'Estar e Mesas', src:'assets/web/imagens/salao-de-festas-01.webp', thumb:'assets/web/miniaturas/imagens/salao-de-festas-01.webp' },
+    { id:31, type:'image', category:'imagens', subCategory:'im-festas', title:'Churrasqueira', subtitle:'Anexa ao Salão de Festas', src:'assets/web/imagens/churrasqueira-01.webp', thumb:'assets/web/miniaturas/imagens/churrasqueira-01.webp' },
+    { id:32, type:'image', category:'imagens', subCategory:'im-festas', title:'Churrasqueira Gourmet', subtitle:'Cozinha e Mesas', src:'assets/web/imagens/churrasqueira-02.webp', thumb:'assets/web/miniaturas/imagens/churrasqueira-02.webp' },
 
-    // ═══ ÁREAS COMUNS › CAMPO ═══
-    { id:50, type:'image', category:'areas-comuns', subCategory:'ac-campo', title:'Campo', subtitle:'Campo de Futebol', src:'assets/areas-comuns/campo-01.webp', thumb:'assets/miniaturas/areas-comuns/campo-01.webp' },
+    // ═══ APARTAMENTO › SALA E COZINHA ═══
+    { id:100, type:'image', category:'apartamento', subCategory:'ap-sala-cozinha', title:'Sala', subtitle:'Estar e Jantar', src:'assets/web/apartamento/sala-01.webp', thumb:'assets/web/miniaturas/apartamento/sala-01.webp' },
+    { id:101, type:'image', category:'apartamento', subCategory:'ap-sala-cozinha', title:'Cozinha', subtitle:'Bancada e Janela', src:'assets/web/apartamento/sala-02.webp', thumb:'assets/web/miniaturas/apartamento/sala-02.webp' },
 
-    // ═══ ÁREAS COMUNS › ESPAÇO INFANTIL ═══
-    { id:60, type:'image', category:'areas-comuns', subCategory:'ac-infantil', title:'Play Kids', subtitle:'Playground', src:'assets/areas-comuns/infantil-01.webp', thumb:'assets/miniaturas/areas-comuns/infantil-01.webp' },
-    { id:61, type:'image', category:'areas-comuns', subCategory:'ac-infantil', title:'Brinquedoteca', subtitle:'Brinquedos e Piscina de Bolinhas', src:'assets/areas-comuns/infantil-02.webp', thumb:'assets/miniaturas/areas-comuns/infantil-02.webp' },
+    // ═══ APARTAMENTO › VARANDA E GARDEN ═══
+    { id:110, type:'image', category:'apartamento', subCategory:'ap-varanda-garden', title:'Varanda', subtitle:'Opção de Varanda', src:'assets/web/apartamento/varanda-01.webp', thumb:'assets/web/miniaturas/apartamento/varanda-01.webp' },
+    { id:111, type:'image', category:'apartamento', subCategory:'ap-varanda-garden', title:'Apartamento Garden', subtitle:'Estar e Jardim Privativo', src:'assets/web/apartamento/garden-01.webp', thumb:'assets/web/miniaturas/apartamento/garden-01.webp' },
 
-    // ═══ ÁREAS COMUNS › PET PLACE ═══
-    { id:70, type:'image', category:'areas-comuns', subCategory:'ac-pet-place', title:'Pet Place', subtitle:'Gramado e Obstáculos', src:'assets/areas-comuns/pet-place-01.webp', thumb:'assets/miniaturas/areas-comuns/pet-place-01.webp' },
-
-    // ═══ ÁREAS COMUNS › SAÚDE E FITNESS ═══
-    { id:80, type:'image', category:'areas-comuns', subCategory:'ac-saude-fitness', title:'Espaço Saúde', subtitle:'Sala de Ginástica', src:'assets/areas-comuns/saude-fitness-01.webp', thumb:'assets/miniaturas/areas-comuns/saude-fitness-01.webp' },
-    { id:81, type:'image', category:'areas-comuns', subCategory:'ac-saude-fitness', title:'Estação de Ginástica', subtitle:'Área Externa', src:'assets/areas-comuns/saude-fitness-02.webp', thumb:'assets/miniaturas/areas-comuns/saude-fitness-02.webp' },
-
-    // ═══ APARTAMENTO DECORADO › SALA E COZINHA ═══
-    { id:100, type:'image', category:'apartamento', subCategory:'ap-sala-cozinha', title:'Sala', subtitle:'Estar e Jantar', src:'assets/apartamento/sala-01.webp', thumb:'assets/miniaturas/apartamento/sala-01.webp' },
-    { id:101, type:'image', category:'apartamento', subCategory:'ap-sala-cozinha', title:'Cozinha', subtitle:'Bancada e Janela', src:'assets/apartamento/sala-02.webp', thumb:'assets/miniaturas/apartamento/sala-02.webp' },
-    { id:102, type:'image', category:'apartamento', subCategory:'ap-sala-cozinha', title:'Cozinha', subtitle:'Com Varanda Estendida', src:'assets/apartamento/sala-03.webp', thumb:'assets/miniaturas/apartamento/sala-03.webp' },
-    { id:103, type:'image', category:'apartamento', subCategory:'ap-sala-cozinha', title:'Varanda', subtitle:'Varanda Estendida', src:'assets/apartamento/sala-04.webp', thumb:'assets/miniaturas/apartamento/sala-04.webp' },
-
-    // ═══ APARTAMENTO DECORADO › QUARTOS E BANHEIRO ═══
-    { id:120, type:'image', category:'apartamento', subCategory:'ap-quartos', title:'Dormitório', subtitle:'Quarto de Casal', src:'assets/apartamento/quartos-01.webp', thumb:'assets/miniaturas/apartamento/quartos-01.webp' },
-    { id:121, type:'image', category:'apartamento', subCategory:'ap-quartos', title:'Dormitório', subtitle:'Quarto de Casal com Penteadeira', src:'assets/apartamento/quartos-02.webp', thumb:'assets/miniaturas/apartamento/quartos-02.webp' },
-    { id:122, type:'image', category:'apartamento', subCategory:'ap-quartos', title:'Dormitório', subtitle:'Quarto Infantil', src:'assets/apartamento/quartos-03.webp', thumb:'assets/miniaturas/apartamento/quartos-03.webp' },
-    { id:123, type:'image', category:'apartamento', subCategory:'ap-quartos', title:'Banheiro', subtitle:'Bancada e Box', src:'assets/apartamento/quartos-04.webp', thumb:'assets/miniaturas/apartamento/quartos-04.webp' },
+    // ═══ APARTAMENTO › QUARTOS E BANHEIRO ═══
+    { id:120, type:'image', category:'apartamento', subCategory:'ap-quartos', title:'Dormitório', subtitle:'Quarto de Casal', src:'assets/web/apartamento/quartos-01.webp', thumb:'assets/web/miniaturas/apartamento/quartos-01.webp' },
+    { id:121, type:'image', category:'apartamento', subCategory:'ap-quartos', title:'Dormitório', subtitle:'Quarto de Casal com Penteadeira', src:'assets/web/apartamento/quartos-02.webp', thumb:'assets/web/miniaturas/apartamento/quartos-02.webp' },
+    { id:122, type:'image', category:'apartamento', subCategory:'ap-quartos', title:'Dormitório', subtitle:'Quarto Infantil', src:'assets/web/apartamento/quartos-03.webp', thumb:'assets/web/miniaturas/apartamento/quartos-03.webp' },
+    { id:123, type:'image', category:'apartamento', subCategory:'ap-quartos', title:'Banheiro', subtitle:'Bancada e Box', src:'assets/web/apartamento/quartos-04.webp', thumb:'assets/web/miniaturas/apartamento/quartos-04.webp' },
 
     // ═══ PLANTAS › TIPOLOGIAS ═══
     { id:300, type:'cobertura-plan', category:'plantas', subCategory:'pl-tipologias',
@@ -963,18 +959,18 @@ const GALLERY_CONFIG = {
       hint:'2 plantas — alterne nas abas · toque para ampliar',
       notice:'Plantas humanizadas — imagens meramente ilustrativas.',
       floors:[
-        { label:'Planta Tipo',           note:'Planta humanizada',                       src:'assets/plantas/planta-tipo.webp',         thumb:'assets/miniaturas/plantas/planta-tipo.webp' },
-        { label:'Com Varanda Estendida', note:'Planta humanizada com varanda estendida', src:'assets/plantas/planta-tipo-varanda.webp', thumb:'assets/miniaturas/plantas/planta-tipo-varanda.webp' },
+        { label:'Planta Tipo',   note:'Planta humanizada',        src:'assets/web/plantas/planta-tipo.webp',   thumb:'assets/web/miniaturas/plantas/planta-tipo.webp' },
+        { label:'Planta Garden', note:'Planta humanizada garden', src:'assets/web/plantas/planta-garden.webp', thumb:'assets/web/miniaturas/plantas/planta-garden.webp' },
     ]},
 
-    // ═══ PLANTAS › BOLOTÁRIO ═══
-    { id:320, type:'cobertura-plan', category:'plantas', subCategory:'pl-bolotario',
-      title:'Bolotário', subtitle:'Implantação com a numeração dos ambientes',
-      badge:'Bolotário',
+    // ═══ PLANTAS › IMPLANTAÇÃO ═══
+    { id:320, type:'cobertura-plan', category:'plantas', subCategory:'pl-implantacao',
+      title:'Implantação', subtitle:'Implantação geral com áreas de lazer e infraestrutura',
+      badge:'Implantação',
       hint:'Toque para ampliar',
-      notice:'Bolotário — imagem meramente ilustrativa.',
+      notice:'Implantação — imagem meramente ilustrativa.',
       floors:[
-        { label:'Bolotário', note:'Implantação geral', src:'assets/plantas/bolotario.webp', thumb:'assets/miniaturas/plantas/bolotario.webp' },
+        { label:'Implantação', note:'Implantação geral', src:'assets/web/plantas/implantacao.webp', thumb:'assets/web/miniaturas/plantas/implantacao.webp' },
     ]},
   ],
 };
@@ -1005,21 +1001,23 @@ const elLbNotice      = $('lb-notice');
 const elLbPrev        = $('lb-prev');
 const elLbNext        = $('lb-next');
 
-// ── modo: 'imagens' | 'plantas' | 'all' ──────────────────────────
+// ── modo: 'imagens' | 'apartamento' | 'plantas' | 'all' ───────────
+const MODES = ['all', 'imagens', 'apartamento', 'plantas'];
 const MODE = (() => {
   try {
     const m = new URLSearchParams(window.location.search).get('mode') || 'all';
-    return ['all','imagens','plantas'].includes(m) ? m : 'all';
+    return MODES.includes(m) ? m : 'all';
   } catch(_) { return 'all'; }
 })();
 
 // Categorias exibidas no filtro principal conforme modo
 const DISPLAY_CATS = (() => {
-  // No modo plantas as sub-categorias de 'plantas' viram o filtro principal.
-  if (MODE === 'plantas') return getCat('plantas').subs.map(s => ({ id: s.id, label: s.label }));
-  if (MODE === 'imagens') return GALLERY_CONFIG.categories.filter(c => c.id !== 'plantas');
+  // Cada galeria isolada usa as sub-categorias como filtro principal.
+  if (MODE !== 'all') return getCat(MODE).subs.map(s => ({ id: s.id, label: s.label }));
   return GALLERY_CONFIG.categories;
 })();
+
+const isTodas = id => /-todas$/.test(id || '');
 
 // ── helpers ──────────────────────────────────────────────────────
 function getCat(id) { return GALLERY_CONFIG.categories.find(c => c.id === id); }
@@ -1049,8 +1047,8 @@ function renderMainFilters() {
 }
 
 function renderSubFilters() {
-  // No modo plantas o filtro principal já é a tipologia — sem sub-filtro
-  if (MODE === 'plantas') { elFilterSub.classList.remove('open'); return; }
+  // Nas galerias isoladas o filtro principal já é a sub-categoria — sem sub-filtro
+  if (MODE !== 'all') { elFilterSub.classList.remove('open'); return; }
   const cat = getCat(st.cat);
   if (cat && cat.subs && cat.subs.length) {
     elFilterSubIn.innerHTML = '';
@@ -1075,17 +1073,12 @@ function renderSubFilters() {
 // ── gallery ──────────────────────────────────────────────────────
 function filteredItems() {
   return GALLERY_CONFIG.items.filter(item => {
-    // Filtro de modo
-    if (MODE === 'plantas' && item.category !== 'plantas') return false;
-    if (MODE === 'imagens' && item.category === 'plantas') return false;
-
-    // Filtro de categoria
-    if (MODE === 'plantas') {
-      if (item.subCategory !== st.cat) return false;
-    } else {
-      if (st.cat && item.category !== st.cat) return false;
-      if (st.sub && st.sub !== 'ac-todas' && item.subCategory !== st.sub) return false;  // 'ac-todas' = sem filtro de sub
+    if (MODE !== 'all') {
+      if (item.category !== MODE) return false;
+      return isTodas(st.cat) || item.subCategory === st.cat;
     }
+    if (st.cat && item.category !== st.cat) return false;
+    if (st.sub && !isTodas(st.sub) && item.subCategory !== st.sub) return false;
     return true;
   });
 }
@@ -1341,14 +1334,13 @@ function closeGallery() {
 
 // ── init ──────────────────────────────────────────────────────────
 function init() {
-  // Filtro inicial depende do modo
-  if (MODE === 'plantas') {
-    st.cat = DISPLAY_CATS[0].id;  // primeira tipologia de plantas
-    st.sub = null;
-  } else {
-    st.cat = DISPLAY_CATS[0].id;               // 'areas-comuns'
+  // Filtro inicial: 1ª sub-categoria (galerias isoladas) ou 1ª categoria + sua 1ª sub
+  st.cat = DISPLAY_CATS[0].id;
+  if (MODE === 'all') {
     const c0 = getCat(st.cat);
-    st.sub = (c0 && c0.subs && c0.subs.length) ? c0.subs[0].id : null;  // pré-seleciona 1ª sub
+    st.sub = (c0 && c0.subs && c0.subs.length) ? c0.subs[0].id : null;
+  } else {
+    st.sub = null;
   }
 
   renderMainFilters();

@@ -1,11 +1,10 @@
 (function (w, d) {
   'use strict';
 
-  var BASE = 'https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/TENDA/ferramentas/galeria/ita+nobre/';
+  var BASE = 'https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/TENDA/ferramentas/galeria/novos+ares+luar/';
   var GALLERY_URL       = BASE + 'index.html';
-  var VIDEO_GALLERY_URL = BASE + 'video-gallery.html';
 
-  var BG = '#C3AEA1';   // taupe do empreendimento — aparece enquanto o iframe carrega
+  var BG = '#311557';   // roxo do empreendimento — aparece enquanto o iframe carrega
 
   var overlay    = null;
   var msgHandler = null;
@@ -20,7 +19,7 @@
     d.head.appendChild(s);
   }
 
-  function _mount(iframeSrc, allow) {
+  function _mount(iframeSrc) {
     if (overlay) _close();
     _injectStyles();
 
@@ -33,7 +32,7 @@
     var iframe = d.createElement('iframe');
     iframe.src = iframeSrc;
     iframe.style.cssText = 'width:100%;height:100%;border:none;display:block;background:' + BG + ';';
-    iframe.setAttribute('allow', allow || 'fullscreen');
+    iframe.setAttribute('allow', 'fullscreen');
 
     overlay.appendChild(iframe);
     d.body.appendChild(overlay);
@@ -68,15 +67,14 @@
     if (show === 1) _open('imagens'); else _close();
   };
 
+  // GaleriaApartamento(1) → abre galeria do apartamento decorado · GaleriaApartamento(0) → fecha
+  w.GaleriaApartamento = function (show) {
+    if (show === 1) _open('apartamento'); else _close();
+  };
+
   // GaleriaPlantas(1) → abre galeria de plantas · GaleriaPlantas(0) → fecha
   w.GaleriaPlantas = function (show) {
     if (show === 1) _open('plantas'); else _close();
-  };
-
-  // AbrirGaleriaVideos(1) → abre o vídeo · AbrirGaleriaVideos(0) → fecha
-  w.AbrirGaleriaVideos = function (show) {
-    if (show === 1) _mount(VIDEO_GALLERY_URL + '?v=' + Date.now(), 'fullscreen; autoplay');
-    else _close();
   };
 
 }(window, document));

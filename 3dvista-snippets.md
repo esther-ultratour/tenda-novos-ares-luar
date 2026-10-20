@@ -1,4 +1,4 @@
-# Trechos para colar no 3DVista — Itá Nobre
+# Trechos para colar no 3DVista — Novos Ares Luar
 
 Copie daqui. Cada bloco é independente.
 
@@ -9,7 +9,7 @@ Copie daqui. Cada bloco é independente.
 ```js
 (function(){
   var s = document.createElement('script');
-  s.src = 'https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/TENDA/ferramentas/galeria/ita+nobre/inject.js?v=' + Date.now();
+  s.src = 'https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/TENDA/ferramentas/galeria/novos+ares+luar/inject.js?v=' + Date.now();
   document.head.appendChild(s);
 })();
 ```
@@ -30,6 +30,18 @@ Fechar a galeria de imagens:
 GaleriaImagens(0);
 ```
 
+Abrir a galeria do apartamento decorado:
+
+```js
+GaleriaApartamento(1);
+```
+
+Fechar a galeria do apartamento decorado:
+
+```js
+GaleriaApartamento(0);
+```
+
 Abrir a galeria de plantas:
 
 ```js
@@ -40,16 +52,4 @@ Fechar a galeria de plantas:
 
 ```js
 GaleriaPlantas(0);
-```
-
-Abrir o vídeo:
-
-```js
-AbrirGaleriaVideos(1);
-```
-
-Fechar o vídeo:
-
-```js
-AbrirGaleriaVideos(0);
 ```

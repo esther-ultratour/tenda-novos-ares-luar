@@ -1,12 +1,10 @@
-# Galeria — Itá Nobre (Tenda)
+# Galeria — Novos Ares Luar (Tenda)
 
-Galeria de imagens/plantas (+ player de vídeo) para injeção via script no 3DVista, hospedada no AWS S3.
-Criada a partir do template da galeria José Torres Sobrinho (Saraiva de Rezende).
+Três galerias independentes — **imagens**, **apartamento decorado** e **plantas** — para injeção via script no 3DVista, hospedadas no AWS S3.
+Criada a partir do template da galeria Itá Nobre (Tenda).
 
-**Empreendimento:** Itá Nobre
-**Incorporadora:** Tenda
-**Tema:** fundo sólido taupe `#C3AEA1`, texto marrom escuro `#2E2019`, estado ativo marrom `#5A3A2B`.
-O lightbox e os rótulos sobre foto continuam escuros, com texto creme.
+**Tema:** fundo roxo `#311557`, cor secundária / estado ativo `#662483`, texto `#FFFFFF`.
+O lightbox usa um roxo mais fundo (`#1E0B38`); o papel das plantas é branco.
 
 ---
 
@@ -14,105 +12,76 @@ O lightbox e os rótulos sobre foto continuam escuros, com texto creme.
 
 | Arquivo | URL |
 |---------|-----|
-| Galeria | `https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/TENDA/ferramentas/galeria/ita+nobre/index.html` |
-| Vídeo   | `https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/TENDA/ferramentas/galeria/ita+nobre/video-gallery.html` |
-| Script  | `https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/TENDA/ferramentas/galeria/ita+nobre/inject.js` |
+| Galeria | `https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/TENDA/ferramentas/galeria/novos+ares+luar/index.html` |
+| Script  | `https://skylineip.s3.sa-east-1.amazonaws.com/Tour+Virtual/TENDA/ferramentas/galeria/novos+ares+luar/inject.js` |
 
-**S3 path:** `s3://skylineip/Tour Virtual/TENDA/ferramentas/galeria/ita nobre/`
+**S3 path:** `s3://skylineip/Tour Virtual/TENDA/ferramentas/galeria/novos ares luar/`
 
----
-
-## Estrutura de arquivos
-
-```
-ita nobre/
-├── index.html            ← galeria de imagens + plantas (?mode=imagens | plantas)
-├── video-gallery.html    ← player do vídeo
-├── inject.js             ← loader leve para injeção no 3DVista
-├── deploy.ps1            ← deploy para o S3 (Windows)
-├── build_assets.py       ← regera assets/ a partir de _originais/ (Pillow)
-├── assets-map.tsv        ← arquivo entregue → nome final (fonte do build)
-├── _originais/           ← material entregue, FORA do git e do deploy
-│   ├── imagens/ (fachada, lazer, apartamento)  plantas/
-└── assets/
-    ├── brand/            ← logo.svg (traço escuro; a animação toca uma vez)
-    ├── areas-comuns/     ← 10 imagens, uma sub-categoria por ambiente
-    ├── apartamento/      ← decorado: sala/cozinha/varanda (4) + quartos/banheiro (4)
-    ├── plantas/          ← 2 plantas tipo + bolotário, fundo branco
-    ├── miniaturas/       ← espelha as pastas acima (grade)
-    └── video/            ← vídeo 1080p (gitignored; ainda não entregue)
-```
-
-> Pastas e arquivos publicados: **minúsculos, sem espaços e sem acentos** (o S3 é
-> case-sensitive). Os nomes de exibição, com acentuação, ficam em `GALLERY_CONFIG`
-> no `index.html`.
+`index.html?mode=imagens | apartamento | plantas` (sem `mode` mostra tudo).
 
 ---
+
+## Estrutura
+
+```
+index.html        ← galeria (?mode=imagens | apartamento | plantas)
+inject.js         ← loader leve para o 3DVista
+deploy.ps1        ← deploy para o S3 (Windows)
+build_assets.py   ← gera assets/web/ (WebP) a partir do material entregue
+assets-map.tsv    ← arquivo entregue → nome final
+assets/
+├── Lazer/ apartamento/ Plantas/   ← material entregue (já redimensionado; não vai ao S3)
+└── web/                           ← o que a galeria consome (vai ao S3)
+    ├── imagens/ apartamento/ plantas/
+    └── miniaturas/                ← espelha as pastas acima (grade)
+```
+
+Nomes publicados: minúsculos, sem espaços e sem acentos (o S3 é case-sensitive).
+Os nomes de exibição ficam em `GALLERY_CONFIG` no `index.html`.
 
 ## Categorias
 
-| Categoria | Sub-categorias |
-|-----------|----------------|
-| Áreas Comuns | Todas · Salão de Festas · Churrasqueira · Piscina · Campo · Espaço Infantil · Pet Place · Saúde e Fitness |
-| Apartamento Decorado | Sala e Cozinha · Quartos e Banheiro |
-| Plantas | Tipologias (Planta Tipo / Com Varanda Estendida) · Bolotário |
+| Galeria | Filtros |
+|---------|---------|
+| Imagens | Todas · Fachada e Acessos · Lazer · Festas e Churrasqueira |
+| Apartamento | Todas · Sala e Cozinha · Varanda e Garden · Quartos e Banheiro |
+| Plantas | Tipologias (Planta Tipo / Planta Garden) · Implantação |
 
----
+## Assets
 
-## Assets — do material entregue ao WebP
-
-| Uso | Tamanho | Qualidade |
-|-----|---------|-----------|
-| Lightbox | lado maior ≤ 2600 px (plantas ≤ 3000 px) | q80 (plantas q86) |
-| Grade (`miniaturas/`) | lado maior ≤ 900 px (plantas ≤ 1400 px) | q72 (plantas q78) |
-
-Os renders chegaram em 1080 px de altura (lazer em 1920 × 1080): o build **só reduz**, nunca amplia.
-Plantas: PNG/TIF com transparência; o build assenta o desenho sobre branco e recorta na própria caixa.
+As imagens chegaram já redimensionadas (1080 px de altura); o build só converte para WebP
+(lightbox q85, miniatura ≤ 900 px q72) e **nunca amplia**. Plantas: PNG com transparência
+assentado sobre branco, recortado no desenho (lightbox q86, miniatura ≤ 1400 px q78).
 
 ```powershell
 python build_assets.py            # só o que falta
 python build_assets.py --force    # tudo
 ```
 
-Para acrescentar imagens: jogue o arquivo em `_originais/`, adicione a linha no TSV,
+Para acrescentar imagens: coloque o arquivo em `assets/`, adicione a linha no TSV,
 rode o script e registre o item em `GALLERY_CONFIG.items`.
-
-**Tipografia:** Montserrat (Google Fonts).
-
----
-
-## Pendências
-
-- **Vídeo:** não foi entregue. O `video-gallery.html` aponta para
-  `assets/video/video-ita-nobre.mp4`; o botão de vídeo no 3DVista só deve ser
-  ligado depois de subir o arquivo (`./deploy.ps1 -WithVideo`). Ao chegar, medir o
-  crop e ajustar o `aspect-ratio` em `video-gallery.html`.
-- **Legendas:** os subtítulos descrevem o que se vê em cada render; conferir com o book.
-- **Pasta `assets/Plantas`:** no Windows ficou com "P" maiúsculo (arquivo travado pelo
-  Explorer). O `deploy.ps1` já sobe para `assets/plantas/` em minúsculo; renomeie a
-  pasta quando possível.
-
----
 
 ## Deploy AWS S3
 
 ```powershell
-./deploy.ps1               # sync (sem o vídeo) + cache-control no HTML/JS
+./deploy.ps1               # sync + cache-control no HTML/JS
 ./deploy.ps1 -QuickHtml    # só HTML/JS
-./deploy.ps1 -WithVideo    # inclui o vídeo — 1ª vez / ao trocá-lo
 ```
 
 HTML/JS recebem `no-cache,no-store,must-revalidate`.
 
----
-
 ## Integração 3DVista
 
-Loader no JavaScript global do projeto e chamadas nos botões — trechos prontos em
-`3dvista-snippets.md`:
+Loader no JavaScript global do projeto e chamadas nos botões — trechos prontos em `3dvista-snippets.md`:
 
 ```js
-GaleriaImagens(1);      // abre galeria de imagens    · GaleriaImagens(0) fecha
-GaleriaPlantas(1);      // abre galeria de plantas    · GaleriaPlantas(0) fecha
-AbrirGaleriaVideos(1);  // abre o vídeo               · AbrirGaleriaVideos(0) fecha
+GaleriaImagens(1);       // imagens               · GaleriaImagens(0) fecha
+GaleriaApartamento(1);   // apartamento decorado  · GaleriaApartamento(0) fecha
+GaleriaPlantas(1);       // plantas               · GaleriaPlantas(0) fecha
 ```
+
+## Pendências
+
+- **Logo:** o empreendimento não tem logo no material; o cabeçalho usa um texto "Novos Ares / Luar".
+- **Legendas:** descrevem o que se vê em cada render; conferir com o book.
+- **Resíduos do Itá Nobre** (`video-gallery.html`, `assets/logo-ita.gif`, `assets/brand/`): não são usados nem publicados; podem ser removidos do repositório.
